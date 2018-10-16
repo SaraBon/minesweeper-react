@@ -97,7 +97,7 @@ componentWillMount(){
     squaresData[randomMine] = "mine";
   };
 
-// calculating the number neighbors ---
+// calculating the number neighbors ----
 
 for (let j = 0; j<64; j++) {
   let counter = 0;
