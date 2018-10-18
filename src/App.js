@@ -229,6 +229,7 @@ let squaresDivs = this.state.gameData.map((x,y) => {
         </div>)
       :
       ( <div>
+        <div className="title">Find Minesweeper instructions <a href="http://www.freeminesweeper.org/help/minehelpinstructions.html">here</a></div>
           <div className="boardM"> {this.renderSquareM()} </div>
           <Modal onClick={() => this.reset()} result={this.state.won}/>
           <button className="my-button" onClick={() => this.reset()}>Reset</button>
