@@ -223,6 +223,7 @@ let squaresDivs = this.state.gameData.map((x,y) => {
   render() {
     return (!this.state.gameOver && !this.state.won) ?
       ( <div>
+          <div className="title">Find Minesweeper instructions <a href="http://www.freeminesweeper.org/help/minehelpinstructions.html">here</a></div>
           <div className="boardM"> {this.renderSquareM()} </div>
           <button className="my-button" onClick={() => this.reset()} >Reset</button>
         </div>)
