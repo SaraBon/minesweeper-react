@@ -1,14 +1,12 @@
 import React from 'react';
-import './index.css';
+import './index.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
-
 
 
 // SQUARE-----------------------------------------------------------------------
 
 
-function SquareM(props) {
+function Square(props) {
 
   const iconStyleMine = {
     fontSize: "30px",
@@ -27,7 +25,7 @@ if (props.gameOver === true) {disableClick = function(){return}};
 
 if (!props.clicked && !props.flagged ) {
   return <button
-            className="squareM"
+            className="square"
             onClick={disableClick}
             onContextMenu={props.onContextMenu}
           />
@@ -35,7 +33,7 @@ if (!props.clicked && !props.flagged ) {
 
 else if (props.flagged) {
   return <button
-            className="squareM"
+            className="square"
             style={iconStyleFlag}
             onClick={disableClick}
             onContextMenu={props.onContextMenu}
@@ -46,7 +44,7 @@ else if (props.flagged) {
 
 else  if (props.type === "mine") {
   return <button
-            className="squareMClicked"
+            className="square clicked"
             style={iconStyleMine}
             onClick={disableClick}
             onContextMenu={props.onContextMenu}
@@ -57,7 +55,7 @@ else  if (props.type === "mine") {
 
 else {
   return <button
-            className="squareMClicked"
+            className="square clicked"
             onClick={disableClick}
             onContextMenu={props.onContextMenu}
           >
@@ -196,13 +194,14 @@ onContextMenu(event, y){
 }
 
 // return the single squares
-renderSquareM(){
+renderSquare(){
 let squaresDivs = this.state.gameData.map((x,y) => {
   return (
-          <div
-            key={Math.random() + 1}
-          >
-            <SquareM
+        //  <div
+          //  key={Math.random() + 1}
+        //    className="squareContainer"
+      //    >
+            <Square
               type={x}
               clicked={this.state.clicked[y]}
               gameOver={this.state.gameOver}
@@ -210,7 +209,7 @@ let squaresDivs = this.state.gameData.map((x,y) => {
               onClick={() => this.handleClickMS(y)}
               onContextMenu={(event) => this.onContextMenu(event, y)}
             />
-          </div>
+        //  </div>
         );
       }
 )
@@ -223,16 +222,16 @@ let squaresDivs = this.state.gameData.map((x,y) => {
   render() {
     return (!this.state.gameOver && !this.state.won) ?
       ( <div>
-          <div className="title">Find Minesweeper instructions <a href="http://www.freeminesweeper.org/help/minehelpinstructions.html">here</a></div>
-          <div className="boardM"> {this.renderSquareM()} </div>
-          <button className="my-button" onClick={() => this.reset()} >Reset</button>
+          <h1>Find Minesweeper instructions <a href="http://www.freeminesweeper.org/help/minehelpinstructions.html">here</a></h1>
+          <div className="board"> {this.renderSquare()} </div>
+          <button onClick={() => this.reset()} >Reset</button>
         </div>)
       :
       ( <div>
-        <div className="title">Find Minesweeper instructions <a href="http://www.freeminesweeper.org/help/minehelpinstructions.html">here</a></div>
-          <div className="boardM"> {this.renderSquareM()} </div>
+        <h1>Find Minesweeper instructions <a href="http://www.freeminesweeper.org/help/minehelpinstructions.html">here</a></h1>
+          <div className="board"> {this.renderSquare()} </div>
           <Modal onClick={() => this.reset()} result={this.state.won}/>
-          <button className="my-button" onClick={() => this.reset()}>Reset</button>
+          <button onClick={() => this.reset()}>Reset</button>
         </div>)
   }
 }
@@ -247,7 +246,7 @@ class Modal extends React.Component {
         <div className="greyOverlay">
               <div className="modal" >
                 <FontAwesomeIcon icon="frown"  />
-                  <button className="my-button" onClick={this.props.onClick}>
+                  <button onClick={this.props.onClick}>
                     Try Again
                   </button>
               </div>
@@ -258,7 +257,7 @@ class Modal extends React.Component {
             <div className="greyOverlay">
                     <div className="modal" >
                       <FontAwesomeIcon icon="smile"  />
-                        <button className="my-button" onClick={this.props.onClick}>
+                        <button onClick={this.props.onClick}>
                           once more
                         </button>
                     </div>
